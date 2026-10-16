@@ -205,7 +205,23 @@ pub fn private_dir(path: &Path) -> Result<()> {
     Ok(())
 }
 pub fn sync_dir(path: &Path) -> Result<()> {
-    File::open(path)?.sync_all()?;
+    let directory = File::open(path)?;
+    #[cfg(target_os = "macos")]
+    loop {
+        // Rust's Apple File::sync_all uses F_FULLFSYNC without a fsync fallback.
+        // Directory entries need the directory fsync operation; regular file
+        // writes below retain sync_all's full device-flush behavior.
+        // SAFETY: the live File owns this descriptor; fsync borrows no memory.
+        if unsafe { libc::fsync(directory.as_raw_fd()) } == 0 {
+            break;
+        }
+        let error = std::io::Error::last_os_error();
+        if error.kind() != std::io::ErrorKind::Interrupted {
+            return Err(error.into());
+        }
+    }
+    #[cfg(not(target_os = "macos"))]
+    directory.sync_all()?;
     Ok(())
 }
 pub fn atomic(path: &Path, bytes: &[u8]) -> Result<()> {
@@ -467,6 +483,12 @@ fn transact_inner(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn directory_sync_succeeds_and_propagates_missing_directory() {
+        let directory = tempfile::tempdir().unwrap();
+        sync_dir(directory.path()).unwrap();
+        assert!(sync_dir(&directory.path().join("missing")).is_err());
+    }
     #[test]
     fn duplicate_nested_keys_rejected() {
         assert!(parse_json(br#"{"a":{"x":1,"x":2}}"#).is_err());

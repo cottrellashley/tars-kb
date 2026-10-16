@@ -107,3 +107,10 @@ compatibility CI job. Release artifacts are Linux-first. A green compile alone i
 not evidence of correct concurrent writes, crash recovery or filesystem durability
 on another platform. Windows support and distributed writers are outside this
 protocol's current scope.
+
+On macOS, directory synchronization calls `libc::fsync` explicitly and propagates
+errors, retrying interruption. Regular file writes retain `File::sync_all`.
+The [Rust 1.99.1 implementation](https://github.com/rust-lang/rust/blob/1.99.1/library/std/src/sys/fs/unix.rs)
+uses Apple's `F_FULLFSYNC` for `File::sync_all` without a fallback; the directory path
+is kept separate rather than ignoring a failed full-flush request. This source-based
+portability adjustment is not a claim of a power-loss durability test.
