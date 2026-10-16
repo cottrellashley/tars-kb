@@ -95,8 +95,10 @@ tars-kb --root "$DEMO_LIBRARY" validate sample --json
 Choose a new export directory outside the library:
 
 ```bash
+DEMO_EXPORT_PARENT="$(mktemp -d)"
+DEMO_EXPORT_PARENT="$(cd "$DEMO_EXPORT_PARENT" && pwd -P)"
 tars-kb --root "$DEMO_LIBRARY" export sample \
-  --output ./sample-reading --format markdown
+  --output "$DEMO_EXPORT_PARENT/reading" --format markdown
 ```
 
 Export refuses an existing destination. Review the selected partition's complete

@@ -174,13 +174,18 @@ def main():
     parser.add_argument("--pages", default="100,1000")
     parser.add_argument("--assertions", default="1000,10000")
     parser.add_argument("--runs", type=int, default=15)
+    parser.add_argument("--index-runs", type=int, default=3, help="exploratory rebuild/update repetitions; small-n tails are sample maxima")
+    parser.add_argument("--write-runs", type=int, default=5, help="exploratory durable-create repetitions; small-n tails are sample maxima")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--work-dir", type=Path, default=Path("target/benchmark-work"),
                         help="synthetic staging parent; defaults to the build tree instead of potentially RAM-backed /tmp")
     parser.add_argument("--with-writes", action="store_true", help="also benchmark durable synthetic claim creation")
+    parser.add_argument("--build-origin", default="local release build", help="origin of the measured binary, e.g. GitHub release artifact")
+    parser.add_argument("--build-compiler", help="verified compiler used to build this binary; do not infer it from the execution host")
     args = parser.parse_args()
     binary = args.binary.resolve(strict=True)
     assert args.runs >= 3, "use at least three measured repetitions"
+    assert args.index_runs >= 3 and args.write_runs >= 3
     pages = [int(count) for count in args.pages.split(",") if count]
     assertions = [int(count) for count in args.assertions.split(",") if count]
     assert all(1 <= count <= 100000 for count in pages + assertions)
@@ -191,10 +196,14 @@ def main():
     compiler = shutil.which("rustc") or str(Path.home() / ".cargo/bin/rustc")
     report = {"schema_version": "1.0", "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(),
               "binary_sha256": hashlib.sha256(binary.read_bytes()).hexdigest(),
-              "binary_version": version([str(binary), "--version"]), "compiler": version([compiler, "--version"]),
+              "binary_version": version([str(binary), "--version"]),
+              "build_origin": args.build_origin, "build_compiler": args.build_compiler or "not independently recorded",
+              "local_rustc": version([compiler, "--version"]),
               "system": {"os": platform.system(), "kernel": platform.release(), "architecture": platform.machine(), "cpu": cpu},
               "method": {"each_sample_new_process": True, "filesystem_cache": "warm/uncontrolled; not evicted",
                          "timing": "wall time through complete stdout/stderr capture", "warmup_processes": "2 except index operations (0); recorded per operation",
+                         "sample_counts": {"ordinary": args.runs, "index": args.index_runs, "write": args.write_runs},
+                         "tail_interpretation": "Exploratory small samples: nearest-rank p95/p99 from n=3 or n=5 are sample maxima, not robust tail estimates. n=15 is also a small observational sample.",
                          "peak_rss": "not measured", "source_data": "synthetic only; generated directly, outside measured command time",
                          "rebuilds": "each sample explicitly rebuilds the derived index; OS caches remain warm"},
               "datasets": [], "measurements": []}
@@ -244,7 +253,7 @@ def main():
                 print(f"Measuring {identifier}: {operation}", file=sys.stderr, flush=True)
                 try:
                     result = measure(operation, [*prefix, *command], env,
-                                     args.runs if not operation.startswith("index-") else min(3, args.runs),
+                                     args.index_runs if operation.startswith("index-") else args.runs,
                                      warmup=0 if operation.startswith("index-") else 2, expected=expected)
                 except (RuntimeError, AssertionError, subprocess.TimeoutExpired) as error:
                     result = {"operation": operation, "status": "error", "error": str(error)}
@@ -252,7 +261,7 @@ def main():
                 report["measurements"].append(result)
             if args.with_writes and dataset["assertions"]:
                 samples = []
-                for number in range(min(5, args.runs)):
+                for number in range(args.write_runs):
                     content = {"id": f"benchmark-write-{number}", "concepts": ["topic"], "basis": "definition",
                                "text": "A synthetic benchmark mutation with a durable receipt.", "temporal": {"kind": "timeless"}, "sources": ["fixture"]}
                     input_path = directory / "claim.json"

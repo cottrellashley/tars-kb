@@ -1,0 +1,798 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-16T19:04:08.905602+00:00",
+  "binary_sha256": "7af808df449b82697110eb35a7c84ff07ba2ef6c664356e335d5dacc9995211e",
+  "binary_version": "tars-kb 0.1.0",
+  "build_origin": "github-release:v0.1.0@ea67e357703b3cc769fbd4bd78ef83ab9671b917",
+  "build_compiler": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "local_rustc": "rustc 1.99.1 (58cf8f9c3 2026-10-13)",
+  "system": {
+    "os": "Linux",
+    "kernel": "7.2.5-3-omarchy",
+    "architecture": "x86_64",
+    "cpu": "Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz",
+    "benchmark_filesystem": "btrfs"
+  },
+  "method": {
+    "each_sample_new_process": true,
+    "filesystem_cache": "warm/uncontrolled; not evicted",
+    "timing": "wall time through complete stdout/stderr capture",
+    "warmup_processes": "2 except index operations (0); recorded per operation",
+    "peak_rss": "not measured",
+    "source_data": "synthetic only; generated directly, outside measured command time",
+    "rebuilds": "each sample explicitly rebuilds the derived index; OS caches remain warm",
+    "binary": "private executable snapshot pinned for all measured samples",
+    "durability": "native writer fsync behavior retained; backing filesystem reported; no power-loss test",
+    "tail_interpretation": "Exploratory small samples: nearest-rank p95/p99 from n=3 or n=5 are sample maxima, not robust tail estimates. n=15 is also a small observational sample.",
+    "sample_counts": {
+      "ordinary": 15,
+      "index": 3,
+      "write": 5
+    }
+  },
+  "datasets": [
+    {
+      "id": "pages-100",
+      "pages": 100,
+      "assertions": 0
+    },
+    {
+      "id": "pages-1000",
+      "pages": 1000,
+      "assertions": 0
+    },
+    {
+      "id": "assertions-1000",
+      "pages": 1,
+      "assertions": 1000
+    },
+    {
+      "id": "assertions-10000",
+      "pages": 1,
+      "assertions": 10000
+    }
+  ],
+  "measurements": [
+    {
+      "operation": "startup-help",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 11.707094,
+      "first_response_bytes": 2153,
+      "warm_process_ms": {
+        "min": 9.438574,
+        "p50": 10.728122,
+        "p95": 12.038843,
+        "p99": 12.038843,
+        "max": 12.038843
+      },
+      "response_bytes": {
+        "min": 2153,
+        "p50": 2153,
+        "max": 2153
+      }
+    },
+    {
+      "operation": "catalog-list",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 222.382465,
+      "first_response_bytes": 526,
+      "warm_process_ms": {
+        "min": 213.192925,
+        "p50": 224.223728,
+        "p95": 385.651326,
+        "p99": 385.651326,
+        "max": 385.651326
+      },
+      "response_bytes": {
+        "min": 526,
+        "p50": 526,
+        "max": 526
+      }
+    },
+    {
+      "operation": "show-page",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 14.0966,
+      "first_response_bytes": 1359,
+      "warm_process_ms": {
+        "min": 13.772192,
+        "p50": 14.683711,
+        "p95": 17.928608,
+        "p99": 17.928608,
+        "max": 17.928608
+      },
+      "response_bytes": {
+        "min": 1359,
+        "p50": 1359,
+        "max": 1359
+      },
+      "dataset": "pages-100"
+    },
+    {
+      "operation": "literal-search",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 45.769564,
+      "first_response_bytes": 2263,
+      "warm_process_ms": {
+        "min": 33.607181,
+        "p50": 41.266691,
+        "p95": 49.300467,
+        "p99": 49.300467,
+        "max": 49.300467
+      },
+      "response_bytes": {
+        "min": 2263,
+        "p50": 2263,
+        "max": 2263
+      },
+      "dataset": "pages-100"
+    },
+    {
+      "operation": "index-rebuild",
+      "status": "measured",
+      "samples": 3,
+      "warmup_processes": 0,
+      "first_process_ms": 162.529281,
+      "first_response_bytes": 332,
+      "warm_process_ms": {
+        "min": 168.234914,
+        "p50": 209.787279,
+        "p95": 215.692139,
+        "p99": 215.692139,
+        "max": 215.692139
+      },
+      "response_bytes": {
+        "min": 332,
+        "p50": 332,
+        "max": 332
+      },
+      "dataset": "pages-100"
+    },
+    {
+      "operation": "index-update-unchanged",
+      "status": "measured",
+      "samples": 3,
+      "warmup_processes": 0,
+      "first_process_ms": 520.695409,
+      "first_response_bytes": 330,
+      "warm_process_ms": {
+        "min": 82.235646,
+        "p50": 83.19709,
+        "p95": 83.768269,
+        "p99": 83.768269,
+        "max": 83.768269
+      },
+      "response_bytes": {
+        "min": 330,
+        "p50": 330,
+        "max": 330
+      },
+      "dataset": "pages-100"
+    },
+    {
+      "operation": "ranked-search",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 25.777589,
+      "first_response_bytes": 5554,
+      "warm_process_ms": {
+        "min": 20.666632,
+        "p50": 24.07407,
+        "p95": 29.709535,
+        "p99": 29.709535,
+        "max": 29.709535
+      },
+      "response_bytes": {
+        "min": 5554,
+        "p50": 5554,
+        "max": 5554
+      },
+      "dataset": "pages-100"
+    },
+    {
+      "operation": "ranked-common",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 26.403862,
+      "first_response_bytes": 5463,
+      "warm_process_ms": {
+        "min": 22.836709,
+        "p50": 25.877994,
+        "p95": 27.222803,
+        "p99": 27.222803,
+        "max": 27.222803
+      },
+      "response_bytes": {
+        "min": 5463,
+        "p50": 5463,
+        "max": 5463
+      },
+      "dataset": "pages-100"
+    },
+    {
+      "operation": "ranked-negative",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 21.382788,
+      "first_response_bytes": 647,
+      "warm_process_ms": {
+        "min": 18.044898,
+        "p50": 21.287537,
+        "p95": 25.229241,
+        "p99": 25.229241,
+        "max": 25.229241
+      },
+      "response_bytes": {
+        "min": 647,
+        "p50": 647,
+        "max": 647
+      },
+      "dataset": "pages-100"
+    },
+    {
+      "operation": "show-page",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 41.955166,
+      "first_response_bytes": 1360,
+      "warm_process_ms": {
+        "min": 31.562852,
+        "p50": 40.85863,
+        "p95": 42.266719,
+        "p99": 42.266719,
+        "max": 42.266719
+      },
+      "response_bytes": {
+        "min": 1360,
+        "p50": 1360,
+        "max": 1360
+      },
+      "dataset": "pages-1000"
+    },
+    {
+      "operation": "literal-search",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 283.89614,
+      "first_response_bytes": 21734,
+      "warm_process_ms": {
+        "min": 170.186094,
+        "p50": 296.865369,
+        "p95": 471.023183,
+        "p99": 471.023183,
+        "max": 471.023183
+      },
+      "response_bytes": {
+        "min": 21734,
+        "p50": 21734,
+        "max": 21734
+      },
+      "dataset": "pages-1000"
+    },
+    {
+      "operation": "index-rebuild",
+      "status": "measured",
+      "samples": 3,
+      "warmup_processes": 0,
+      "first_process_ms": 701.67986,
+      "first_response_bytes": 335,
+      "warm_process_ms": {
+        "min": 675.114947,
+        "p50": 680.133653,
+        "p95": 682.454534,
+        "p99": 682.454534,
+        "max": 682.454534
+      },
+      "response_bytes": {
+        "min": 335,
+        "p50": 335,
+        "max": 335
+      },
+      "dataset": "pages-1000"
+    },
+    {
+      "operation": "index-update-unchanged",
+      "status": "measured",
+      "samples": 3,
+      "warmup_processes": 0,
+      "first_process_ms": 557.358621,
+      "first_response_bytes": 332,
+      "warm_process_ms": {
+        "min": 423.659735,
+        "p50": 431.203353,
+        "p95": 442.816154,
+        "p99": 442.816154,
+        "max": 442.816154
+      },
+      "response_bytes": {
+        "min": 332,
+        "p50": 332,
+        "max": 332
+      },
+      "dataset": "pages-1000"
+    },
+    {
+      "operation": "ranked-search",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 61.936822,
+      "first_response_bytes": 5563,
+      "warm_process_ms": {
+        "min": 56.298868,
+        "p50": 64.647078,
+        "p95": 109.886069,
+        "p99": 109.886069,
+        "max": 109.886069
+      },
+      "response_bytes": {
+        "min": 5563,
+        "p50": 5563,
+        "max": 5563
+      },
+      "dataset": "pages-1000"
+    },
+    {
+      "operation": "ranked-common",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 87.511273,
+      "first_response_bytes": 5472,
+      "warm_process_ms": {
+        "min": 46.967086,
+        "p50": 71.087817,
+        "p95": 75.976422,
+        "p99": 75.976422,
+        "max": 75.976422
+      },
+      "response_bytes": {
+        "min": 5472,
+        "p50": 5472,
+        "max": 5472
+      },
+      "dataset": "pages-1000"
+    },
+    {
+      "operation": "ranked-negative",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 57.445296,
+      "first_response_bytes": 648,
+      "warm_process_ms": {
+        "min": 53.146531,
+        "p50": 58.948884,
+        "p95": 67.027819,
+        "p99": 67.027819,
+        "max": 67.027819
+      },
+      "response_bytes": {
+        "min": 648,
+        "p50": 648,
+        "max": 648
+      },
+      "dataset": "pages-1000"
+    },
+    {
+      "operation": "show-page",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 29.119885,
+      "first_response_bytes": 1365,
+      "warm_process_ms": {
+        "min": 22.060868,
+        "p50": 28.968111,
+        "p95": 35.480828,
+        "p99": 35.480828,
+        "max": 35.480828
+      },
+      "response_bytes": {
+        "min": 1365,
+        "p50": 1365,
+        "max": 1365
+      },
+      "dataset": "assertions-1000"
+    },
+    {
+      "operation": "literal-search",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 28.282057,
+      "first_response_bytes": 155,
+      "warm_process_ms": {
+        "min": 24.584415,
+        "p50": 28.246655,
+        "p95": 36.919061,
+        "p99": 36.919061,
+        "max": 36.919061
+      },
+      "response_bytes": {
+        "min": 155,
+        "p50": 155,
+        "max": 155
+      },
+      "dataset": "assertions-1000"
+    },
+    {
+      "operation": "index-rebuild",
+      "status": "measured",
+      "samples": 3,
+      "warmup_processes": 0,
+      "first_process_ms": 887.917605,
+      "first_response_bytes": 340,
+      "warm_process_ms": {
+        "min": 907.802551,
+        "p50": 913.99611,
+        "p95": 969.779302,
+        "p99": 969.779302,
+        "max": 969.779302
+      },
+      "response_bytes": {
+        "min": 340,
+        "p50": 340,
+        "max": 340
+      },
+      "dataset": "assertions-1000"
+    },
+    {
+      "operation": "index-update-unchanged",
+      "status": "measured",
+      "samples": 3,
+      "warmup_processes": 0,
+      "first_process_ms": 902.361565,
+      "first_response_bytes": 337,
+      "warm_process_ms": {
+        "min": 713.804086,
+        "p50": 714.331329,
+        "p95": 729.400202,
+        "p99": 729.400202,
+        "max": 729.400202
+      },
+      "response_bytes": {
+        "min": 337,
+        "p50": 337,
+        "max": 337
+      },
+      "dataset": "assertions-1000"
+    },
+    {
+      "operation": "ranked-search",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 50.955233,
+      "first_response_bytes": 5725,
+      "warm_process_ms": {
+        "min": 44.812961,
+        "p50": 50.327818,
+        "p95": 69.3697,
+        "p99": 69.3697,
+        "max": 69.3697
+      },
+      "response_bytes": {
+        "min": 5725,
+        "p50": 5725,
+        "max": 5725
+      },
+      "dataset": "assertions-1000"
+    },
+    {
+      "operation": "ranked-common",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 55.408644,
+      "first_response_bytes": 5389,
+      "warm_process_ms": {
+        "min": 40.854653,
+        "p50": 53.477252,
+        "p95": 101.022331,
+        "p99": 101.022331,
+        "max": 101.022331
+      },
+      "response_bytes": {
+        "min": 5389,
+        "p50": 5389,
+        "max": 5389
+      },
+      "dataset": "assertions-1000"
+    },
+    {
+      "operation": "ranked-negative",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 51.099137,
+      "first_response_bytes": 653,
+      "warm_process_ms": {
+        "min": 34.271955,
+        "p50": 63.258789,
+        "p95": 68.634766,
+        "p99": 68.634766,
+        "max": 68.634766
+      },
+      "response_bytes": {
+        "min": 653,
+        "p50": 653,
+        "max": 653
+      },
+      "dataset": "assertions-1000"
+    },
+    {
+      "operation": "read-one-fact",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 70.36927,
+      "first_response_bytes": 536,
+      "warm_process_ms": {
+        "min": 37.113572,
+        "p50": 43.845116,
+        "p95": 55.527389,
+        "p99": 55.527389,
+        "max": 55.527389
+      },
+      "response_bytes": {
+        "min": 536,
+        "p50": 536,
+        "max": 536
+      },
+      "dataset": "assertions-1000"
+    },
+    {
+      "operation": "read-one-concept",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 43.886206,
+      "first_response_bytes": 402,
+      "warm_process_ms": {
+        "min": 30.197829,
+        "p50": 60.79082,
+        "p95": 82.250335,
+        "p99": 82.250335,
+        "max": 82.250335
+      },
+      "response_bytes": {
+        "min": 402,
+        "p50": 402,
+        "max": 402
+      },
+      "dataset": "assertions-1000"
+    },
+    {
+      "operation": "durable-claim-create",
+      "dataset": "assertions-1000",
+      "status": "measured",
+      "samples": 5,
+      "warmup_processes": 0,
+      "warm_process_ms": {
+        "p50": 449.231906,
+        "p95": 485.617654,
+        "p99": 485.617654
+      },
+      "note": "new assertion and manifest/history growth; no fsync shortcuts"
+    },
+    {
+      "operation": "show-page",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 177.821651,
+      "first_response_bytes": 1366,
+      "warm_process_ms": {
+        "min": 168.777028,
+        "p50": 179.237531,
+        "p95": 259.12259,
+        "p99": 259.12259,
+        "max": 259.12259
+      },
+      "response_bytes": {
+        "min": 1366,
+        "p50": 1366,
+        "max": 1366
+      },
+      "dataset": "assertions-10000"
+    },
+    {
+      "operation": "literal-search",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 227.14442,
+      "first_response_bytes": 156,
+      "warm_process_ms": {
+        "min": 170.461152,
+        "p50": 174.534692,
+        "p95": 222.330992,
+        "p99": 222.330992,
+        "max": 222.330992
+      },
+      "response_bytes": {
+        "min": 156,
+        "p50": 156,
+        "max": 156
+      },
+      "dataset": "assertions-10000"
+    },
+    {
+      "operation": "index-rebuild",
+      "status": "measured",
+      "samples": 3,
+      "warmup_processes": 0,
+      "first_process_ms": 8021.767852,
+      "first_response_bytes": 343,
+      "warm_process_ms": {
+        "min": 8084.589137,
+        "p50": 8188.621637,
+        "p95": 9273.343907,
+        "p99": 9273.343907,
+        "max": 9273.343907
+      },
+      "response_bytes": {
+        "min": 343,
+        "p50": 343,
+        "max": 343
+      },
+      "dataset": "assertions-10000"
+    },
+    {
+      "operation": "index-update-unchanged",
+      "status": "measured",
+      "samples": 3,
+      "warmup_processes": 0,
+      "first_process_ms": 7581.909657,
+      "first_response_bytes": 339,
+      "warm_process_ms": {
+        "min": 6650.429953,
+        "p50": 6727.854799,
+        "p95": 7522.817329,
+        "p99": 7522.817329,
+        "max": 7522.817329
+      },
+      "response_bytes": {
+        "min": 339,
+        "p50": 339,
+        "max": 339
+      },
+      "dataset": "assertions-10000"
+    },
+    {
+      "operation": "ranked-search",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 282.011347,
+      "first_response_bytes": 5734,
+      "warm_process_ms": {
+        "min": 274.001613,
+        "p50": 286.904796,
+        "p95": 542.655795,
+        "p99": 542.655795,
+        "max": 542.655795
+      },
+      "response_bytes": {
+        "min": 5734,
+        "p50": 5734,
+        "max": 5734
+      },
+      "dataset": "assertions-10000"
+    },
+    {
+      "operation": "ranked-common",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 343.319057,
+      "first_response_bytes": 5398,
+      "warm_process_ms": {
+        "min": 306.30446,
+        "p50": 351.43369,
+        "p95": 585.359999,
+        "p99": 585.359999,
+        "max": 585.359999
+      },
+      "response_bytes": {
+        "min": 5398,
+        "p50": 5398,
+        "max": 5398
+      },
+      "dataset": "assertions-10000"
+    },
+    {
+      "operation": "ranked-negative",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 273.785689,
+      "first_response_bytes": 654,
+      "warm_process_ms": {
+        "min": 240.838152,
+        "p50": 256.227775,
+        "p95": 319.983203,
+        "p99": 319.983203,
+        "max": 319.983203
+      },
+      "response_bytes": {
+        "min": 654,
+        "p50": 654,
+        "max": 654
+      },
+      "dataset": "assertions-10000"
+    },
+    {
+      "operation": "read-one-fact",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 393.505802,
+      "first_response_bytes": 536,
+      "warm_process_ms": {
+        "min": 285.043302,
+        "p50": 308.387388,
+        "p95": 498.693649,
+        "p99": 498.693649,
+        "max": 498.693649
+      },
+      "response_bytes": {
+        "min": 536,
+        "p50": 536,
+        "max": 536
+      },
+      "dataset": "assertions-10000"
+    },
+    {
+      "operation": "read-one-concept",
+      "status": "measured",
+      "samples": 15,
+      "warmup_processes": 2,
+      "first_process_ms": 407.024883,
+      "first_response_bytes": 402,
+      "warm_process_ms": {
+        "min": 295.877942,
+        "p50": 321.609616,
+        "p95": 414.603578,
+        "p99": 414.603578,
+        "max": 414.603578
+      },
+      "response_bytes": {
+        "min": 402,
+        "p50": 402,
+        "max": 402
+      },
+      "dataset": "assertions-10000"
+    },
+    {
+      "operation": "durable-claim-create",
+      "dataset": "assertions-10000",
+      "status": "measured",
+      "samples": 5,
+      "warmup_processes": 0,
+      "warm_process_ms": {
+        "p50": 3325.97108,
+        "p95": 3648.347417,
+        "p99": 3648.347417
+      },
+      "note": "new assertion and manifest/history growth; no fsync shortcuts"
+    }
+  ],
+  "generation_seconds": 15.982566430233419,
+  "source_bytes": 16554443,
+  "fixture_validation": "passed native full validation before measurements"
+}

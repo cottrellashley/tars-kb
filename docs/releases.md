@@ -47,3 +47,14 @@ run the public scanner over the complete candidate tree, review the staged diff
 and history, and check that examples contain synthetic material only. Checksums,
 content schema versions, memory-profile versions and output-protocol versions are
 distinct from the executable's package version.
+
+## Updating the tool or a contract
+
+Install a chosen release, then inspect `capabilities --json`, `spec list` and
+`schema list` before using it against authored data. The current binary reads and
+writes storage major 1 and the optional `tars-memory/1.0` profile. Unknown required
+features and unsupported profiles fail before a write; upgrading an executable
+does not implicitly migrate a library. Keep a clean, verified export and independent
+backup before any future contract migration. This release has no migration command
+or automatic updater. A future incompatible profile needs an explicit documented
+migration and a CLI release that advertises support.

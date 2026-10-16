@@ -72,6 +72,9 @@ the same existing evidence and references; it never invents an answer. Stable se
 cursors are not implemented yet; the response says to increase the limit to expand
 the snapshot. Existing legacy search output remains unchanged.
 
-No performance numbers are claimed here. Measure process startup, direct reads,
-input scanning/index construction, incremental row updates, ranked queries and JSON
-serialization separately using synthetic data, pinned builds and explicit cache states.
+The [measured release benchmarks](performance.md) separate process startup, direct
+reads, input scans, incremental row updates and ranked queries. Large v1 manifests
+and memory profile inventories still add work to a single-item read; an index does
+not remove that cost. The current format's file/inventory and durable-journal growth
+needs further design work for large collections. Read the measured sizes, sample
+counts and limitations before treating a design latency target as achieved.
