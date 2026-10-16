@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Check (${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm, macos-15]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Rust toolchain
+        run: rustup toolchain install stable --profile minimal --component rustfmt --component clippy
+      - name: Use a canonical temporary directory
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          location = Path(os.environ["RUNNER_TEMP"]).resolve(strict=True)
+          with open(os.environ["GITHUB_ENV"], "a") as output:
+              output.write(f"TMPDIR={location}\nTARS_KB_CI_TMP={location}\n")
+          PY
+      - name: Formatting
+        run: cargo +stable fmt --check
+      - name: Lints
+        run: cargo +stable clippy --locked --all-targets -- -D warnings
+      - name: Tests
+        run: cargo +stable test --locked --all-targets
+      - name: Interrupted-write recovery tests
+        run: cargo +stable test --locked --all-targets --features fault-injection
+      - name: Release build
+        run: cargo +stable build --locked --release
+      - name: Synthetic example validation
+        run: |
+          cp -R examples/library "$TARS_KB_CI_TMP/example-library"
+          ./target/release/tars-kb --root "$TARS_KB_CI_TMP/example-library" --json validate sample
+      - name: Public artifact checks
+        run: |
+          python3 scripts/public-check.py --self-test
+          python3 scripts/public-check.py

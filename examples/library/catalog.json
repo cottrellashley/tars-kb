@@ -1,0 +1,9 @@
+{
+  "schema_version": "1.0",
+  "knowledge_bases": [
+    {
+      "id": "sample",
+      "path": "bases/sample"
+    }
+  ]
+}

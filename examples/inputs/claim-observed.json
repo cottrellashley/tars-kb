@@ -1,0 +1,22 @@
+{
+  "id": "plot-count",
+  "concepts": [
+    "garden"
+  ],
+  "text": "The fictional demonstration garden had three marked plots at the observation time.",
+  "basis": "observed",
+  "temporal": {
+    "kind": "observed",
+    "at": {
+      "type": "instant",
+      "value": "2026-10-16T12:00:00Z"
+    }
+  },
+  "sources": [
+    "example-observation"
+  ],
+  "subject": "demo-garden",
+  "predicate": "marked-plot-count",
+  "value": 3,
+  "scope": "fictional-fixture"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "duration-definition",
+  "concepts": [
+    "measurement"
+  ],
+  "text": "A duration measures elapsed time between two instants.",
+  "basis": "definition",
+  "temporal": {
+    "kind": "timeless"
+  },
+  "sources": [
+    "example-notes"
+  ]
+}

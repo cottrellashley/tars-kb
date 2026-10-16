@@ -1,0 +1,15 @@
+{
+  "id": "leaf-count",
+  "concepts": [
+    "garden"
+  ],
+  "text": "The fictional leaf count has not been dated or measured.",
+  "basis": "reported",
+  "temporal": {
+    "kind": "unknown",
+    "description": "The fictional source supplied no measurement or observation date."
+  },
+  "sources": [
+    "example-notes"
+  ]
+}

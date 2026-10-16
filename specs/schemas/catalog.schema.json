@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tars:kb:catalog:1.0",
+  "title": "Tars knowledge base catalog 1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "knowledge_bases"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.[0-9]+$"
+    },
+    "knowledge_bases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "path"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^bases/[a-z][a-z0-9-]*$"
+          }
+        }
+      }
+    }
+  }
+}

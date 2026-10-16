@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "sample",
+  "title": "Synthetic sample knowledge base",
+  "summary": "Small, fictional examples for measurement and a demonstration garden. No personal or machine data.",
+  "version": "1.0.0",
+  "visibility": "shareable",
+  "owner": "Example author",
+  "language": "en",
+  "created_at": "2026-10-16",
+  "updated_at": "2026-10-16",
+  "entrypoint": "overview",
+  "pages": [
+    {
+      "id": "overview",
+      "title": "Synthetic sample knowledge base",
+      "path": "pages/overview.md",
+      "kind": "overview",
+      "status": "documented",
+      "sources": [
+        "example-notes"
+      ],
+      "tags": [
+        "start"
+      ]
+    },
+    {
+      "id": "measurement",
+      "title": "Measurement",
+      "path": "pages/measurement.md",
+      "kind": "concept",
+      "status": "documented",
+      "sources": [
+        "example-notes"
+      ],
+      "tags": [
+        "measurement",
+        "definitions"
+      ]
+    },
+    {
+      "id": "garden",
+      "title": "Demonstration garden",
+      "path": "pages/garden.md",
+      "kind": "concept",
+      "status": "documented",
+      "sources": [
+        "example-observation"
+      ],
+      "tags": [
+        "garden",
+        "observations"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "example-notes",
+      "title": "Synthetic example notes",
+      "type": "conversation",
+      "uri": "conversation://synthetic-example/notes",
+      "checked_at": "2026-10-16"
+    },
+    {
+      "id": "example-observation",
+      "title": "Fictional garden observation",
+      "type": "observation",
+      "uri": "observation://synthetic-example/garden-check",
+      "checked_at": "2026-10-16"
+    }
+  ],
+  "assets": []
+}

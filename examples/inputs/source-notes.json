@@ -1,0 +1,7 @@
+{
+  "id": "example-notes",
+  "title": "Synthetic example notes",
+  "type": "conversation",
+  "uri": "conversation://synthetic-example/notes",
+  "checked_at": "2026-10-16"
+}
